@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title>Calculator</title>
+
+        <!-- jQuery Mobile -->
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+
+        <!-- My style -->
+        <style type="text/css">
+        	.ui-content .ui-btn {
+        		font-size: 130%;
+        	}
+        	.display {
+        		min-height: 70px;
+        		text-align: right;
+        		font-size: 250%;
+        		border-radius: 0;
+        	}
+        </style>
+    </head>
+    <body>
+		<div data-role="header" data-theme="b" data-position="fixed">
+			<h1>Calculator App</h1>
+		</div>
+
+		<form role="main" class="ui-content" name="Calculator">
+			<input class="display" id="display" type="text" disabled="disabled" name="answer">
+
+			<div class="ui-grid-c">
+				<div class="ui-block-a">
+					<input type="button" class="ui-btn" role="button" id="num1" value="1">
+				</div>
+				<div class="ui-block-b">
+					<input type="button" class="ui-btn" role="button" id="num2" value="2">
+				</div>
+				<div class="ui-block-c">
+					<input type="button" class="ui-btn" role="button" id="num3" value="3">
+				</div>
+				<div class="ui-block-d">
+					<input type="button" class="ui-btn" role="button" id="plus" value="+">
+				</div>
+			</div>
+			<div class="ui-grid-c">
+				<div class="ui-block-a">
+					<input type="button" class="ui-btn" role="button" id="num4" value="4">
+				</div>
+				<div class="ui-block-b">
+					<input type="button" class="ui-btn" role="button" id="num5" value="5">
+				</div>
+				<div class="ui-block-c">
+					<input type="button" class="ui-btn" role="button" id="num6" value="6">
+				</div>
+				<div class="ui-block-d">
+					<input type="button" class="ui-btn" role="button" id="minus" value="-">
+				</div>
+			</div>
+			<div class="ui-grid-c">
+				<div class="ui-block-a">
+					<input type="button" class="ui-btn" role="button" id="num7" value="7">
+				</div>
+				<div class="ui-block-b">
+					<input type="button" class="ui-btn" role="button" id="num8" value="8">
+				</div>
+				<div class="ui-block-c">
+					<input type="button" class="ui-btn" role="button" id="num9" value="9">
+				</div>
+				<div class="ui-block-d">
+					<input type="button" class="ui-btn" role="button" id="times" value="x">
+				</div>
+			</div>
+			<div class="ui-grid-c">
+				<div class="ui-block-a">
+					<input type="button" class="ui-btn" role="button" id="dot" value=".">
+				</div>
+				<div class="ui-block-b">
+					<input type="button" class="ui-btn" role="button" id="num0" value="0">
+				</div>
+				<div class="ui-block-c">
+					<input type="button" class="ui-btn" role="button" id="equals" value="=">
+				</div>
+				<div class="ui-block-d">
+					<input type="button" class="ui-btn" role="button" id="divide" value="/">
+				</div>
+			</div>
+			<div class="ui-grid-d">
+				<input type="button" class="ui-btn" role="button" id="clear" data-icon="delete" value="Clear">
+			</div>
+		</form>
+
+		<div data-role="footer" data-position="fixed">
+			<h6>Designed by Ykay</h6>
+		</div>
+
+        <!-- Inbuilt -->
+        <script type="text/javascript" src="cordova.js"></script>
+
+        <!-- jQuery Mobile -->
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+        <script type="text/javascript">
+        	// when buttons are clicked
+        	$('input[type="button"]').click(function() {
+        		var btnClicked = $(this).attr('id');
+
+        		if (btnClicked.indexOf("num") != -1) {
+        			number = parseInt(btnClicked.split("num")[1]);
+        		}
+        		else {
+        			// collect other symbols
+        			if (btnClicked == 'plus') {
+		    			number = '+';
+        			}
+        			else if (btnClicked == 'minus') {
+		    			number = '-';
+        			}
+        			else if (btnClicked == 'dot') {
+		    			number = '.';
+        			}
+        			else if (btnClicked == 'times') {
+		    			number = '*';
+        			}
+        			else if (btnClicked == 'divide') {
+		    			number = '/';
+        			}
+        			else if (btnClicked == 'equals') {
+        				number = '';
+
+        				// Calculate
+        				Calculator.answer.value = eval(Calculator.answer.value);
+        			}
+        			else {
+        				number = '';
+        				Calculator.answer.value = number;
+        			}
+        		}
+
+        		Calculator.answer.value += number;
+        	});
+        </script>
+    </body>
+</html>
